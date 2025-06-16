@@ -20,6 +20,8 @@ Below are the collections used in the database:
 
 ## 🗃️ Sample Document Structures:
 
+```json
+
 1. Users:
 {
   _id: ObjectId("user1"),
@@ -71,6 +73,8 @@ Below are the collections used in the database:
   name: "John",
   mentee_count: 30
 }
+
+```
 
 ---
 
