@@ -1,0 +1,543 @@
+<------------------------------ Database starts ------------------------------>
+
+use zen_class_programme;
+
+switched to db zen_class_programme
+
+<------------------------------ Database completed ------------------------------>
+
+
+<------------------------------ Users collection starts ------------------------------>
+
+db.users.insertMany([
+
+{name:"john", email:"john@gmail.com", mentor_id:1001},
+
+{name:"steve", email:"steve@gmail.com", mentor_id:1002},
+
+{name:"adam", email:"adam@gmail.com", mentor_id:1003},
+
+{name:"smith", email:"smith@gmail.com", mentor_id:1004}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684ecc13abc0d2a269f4a81e'),
+    '1': ObjectId('684ecc13abc0d2a269f4a81f'),
+    '2': ObjectId('684ecc13abc0d2a269f4a820'),
+    '3': ObjectId('684ecc13abc0d2a269f4a821')
+  }
+}
+
+(NOTE: After creating the mentors collection, I have updated the mentor_id of all users as follows):
+
+db.users.updateOne({_id:ObjectId('684ecc13abc0d2a269f4a81e')}, {$set:{mentor_id:ObjectId('684ed768abc0d2a269f4a82b')}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.users.updateOne({_id:ObjectId('684ecc13abc0d2a269f4a81f')}, {$set:{mentor_id:ObjectId('684ed768abc0d2a269f4a82c')}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.users.updateOne({_id:ObjectId('684ecc13abc0d2a269f4a820')}, {$set:{mentor_id:ObjectId('684f43feabc0d2a269f4a82d')}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+db.users.updateOne({_id:ObjectId('684ecc13abc0d2a269f4a821')}, {$set:{mentor_id:ObjectId('684f43feabc0d2a269f4a82e')}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+<------------------------------ Users collection completed ------------------------------>
+
+<------------------------------ Codekata collection starts ------------------------------>
+
+db.codekata.insertMany([
+
+  {user_id: ObjectId('684ecc13abc0d2a269f4a81e'), problems_solved:25},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a81f'), problems_solved:15},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a820'), problems_solved:10},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a821'), problems_solved:20}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684ea851abc0d2a269f4a80f'),
+    '1': ObjectId('684ea851abc0d2a269f4a810'),
+    '2': ObjectId('684ea851abc0d2a269f4a811'),
+    '3': ObjectId('684ea851abc0d2a269f4a812')
+  }
+}
+
+<------------------------------ Codekata collection completed ------------------------------>
+
+<------------------------------ Attendance collection starts ------------------------------>
+
+db.attendance.insertMany([
+
+  {user_id: ObjectId('684ecc13abc0d2a269f4a81e'), date:new Date("2020-10-17"), attendance_status:"present"},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a81f'), date:new Date("2020-10-18"), attendance_status:"absent"},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a820'), date:new Date("2020-10-19"), attendance_status:"present"},
+  
+  {user_id: ObjectId('684ecc13abc0d2a269f4a821'), date:new Date("2020-10-20"), attendance_status:"absent"}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684eacfeabc0d2a269f4a813'),
+    '1': ObjectId('684eacfeabc0d2a269f4a814'),
+    '2': ObjectId('684eacfeabc0d2a269f4a815'),
+    '3': ObjectId('684eacfeabc0d2a269f4a816')
+  }
+}
+
+<------------------------------ Attendance collection completed ------------------------------>
+
+<------------------------------ Topics collection starts ------------------------------>
+
+db.topics.insertMany([
+
+  {topic_name:"HTML & CSS", date:new Date("2020-09-25")},
+  
+  {topic_name:"Javascript", date:new Date("2020-10-16")},
+  
+  {topic_name:"MySQL", date:new Date("2020-10-26")},
+  
+  {topic_name:"MongoDB", date:new Date("2020-10-28")}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684eb0e4abc0d2a269f4a817'),
+    '1': ObjectId('684eb0e4abc0d2a269f4a818'),
+    '2': ObjectId('684eb0e4abc0d2a269f4a819'),
+    '3': ObjectId('684eb0e4abc0d2a269f4a81a')
+  }
+}
+
+<------------------------------ Topics collection completed ------------------------------>
+
+<------------------------------ Tasks collection starts ------------------------------>
+
+db.tasks.insertMany([
+
+{topic_id:ObjectId('684eb0e4abc0d2a269f4a817'), task_name:"Landing Page", date:new Date("2020-09-30"),
+submitted_by:[ObjectId('684ecc13abc0d2a269f4a81e'), ObjectId('684ecc13abc0d2a269f4a81f'), 
+ObjectId('684ecc13abc0d2a269f4a820'), ObjectId('684ecc13abc0d2a269f4a821')]},
+
+{topic_id:ObjectId('684eb0e4abc0d2a269f4a818'), task_name:"Todo App", date:new Date("2020-10-25"),
+submitted_by:[ObjectId('684ecc13abc0d2a269f4a81e'), ObjectId('684ecc13abc0d2a269f4a81f'), ObjectId('684ecc13abc0d2a269f4a820')]},
+
+{topic_id:ObjectId('684eb0e4abc0d2a269f4a819'), task_name:"E-commerce Database", date:new Date("2020-10-27"),
+submitted_by:[ObjectId('684ecc13abc0d2a269f4a81f'), ObjectId('684ecc13abc0d2a269f4a820')]},
+
+{topic_id:ObjectId('684eb0e4abc0d2a269f4a81a'), task_name:"Zen Class Programme", date:new Date("2020-10-29"),
+submitted_by:[ObjectId('684ecc13abc0d2a269f4a81e'), ObjectId('684ecc13abc0d2a269f4a81f'), ObjectId('684ecc13abc0d2a269f4a820')]}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684ed1c0abc0d2a269f4a823'),
+    '1': ObjectId('684ed1c0abc0d2a269f4a824'),
+    '2': ObjectId('684ed1c0abc0d2a269f4a825'),
+    '3': ObjectId('684ed1c0abc0d2a269f4a826')
+  }
+}
+
+<------------------------------ Tasks collection completed ------------------------------>
+
+<------------------------------ Company drives collection starts ------------------------------>
+
+db.company_drives.insertMany([
+
+{company_name:"Google", date:new Date("2020-09-30"), attended_students:[ObjectId('684ecc13abc0d2a269f4a81e'), 
+ObjectId('684ecc13abc0d2a269f4a81f')]},
+
+{company_name:"Microsoft", date:new Date("2020-10-25"), attended_students:[ObjectId('684ecc13abc0d2a269f4a81e'), 
+ObjectId('684ecc13abc0d2a269f4a81f'), ObjectId('684ecc13abc0d2a269f4a820')]},
+
+{company_name:"Zoho", date:new Date("2020-10-27"), attended_students:[ObjectId('684ecc13abc0d2a269f4a81f'), 
+ObjectId('684ecc13abc0d2a269f4a820'), ObjectId('684ecc13abc0d2a269f4a821')]},
+
+{company_name:"Amazon", date:new Date("2020-10-29"), attended_students:[ObjectId('684ecc13abc0d2a269f4a81e'), 
+ObjectId('684ecc13abc0d2a269f4a81f'), ObjectId('684ecc13abc0d2a269f4a820'), ObjectId('684ecc13abc0d2a269f4a821')]}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684ed53fabc0d2a269f4a827'),
+    '1': ObjectId('684ed53fabc0d2a269f4a828'),
+    '2': ObjectId('684ed53fabc0d2a269f4a829'),
+    '3': ObjectId('684ed53fabc0d2a269f4a82a')
+  }
+}
+
+<------------------------------ Company drives collection completed ------------------------------>
+
+<------------------------------ Mentors collection starts ------------------------------>
+
+db.mentors.insertMany([
+
+{mentor_name:"Rupan", mentee_count: 30},
+
+{mentor_name:"Rajavasanthan", mentee_count: 12},
+
+{mentor_name:"Vasantharajan", mentee_count: 18},
+
+{mentor_name:"Pugazharasan", mentee_count: 25}
+
+]);
+
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('684ed768abc0d2a269f4a82b'),
+    '1': ObjectId('684ed768abc0d2a269f4a82c'),
+    '2': ObjectId('684f43feabc0d2a269f4a82d'),
+    '3': ObjectId('684f43feabc0d2a269f4a82e')
+  }
+}
+
+<------------------------------ Mentors collection completed ------------------------------>
+
+<------------------------------ Queries part starts ------------------------------>
+
+1. Question : Find all the topics and tasks which are thought in the month of October
+   
+   Query    : //Topics thought in the month of October:
+              
+              db.topics.find({
+                    date:{
+                    $gte:new Date("2020-10-01"),
+                    $lte:new Date("2020-10-31")
+                    }
+                    });
+              
+              
+              //Tasks in the month of October:
+              
+              db.tasks.find({
+                    date:{
+                    $gte:new Date("2020-10-01"),
+                    $lte:new Date("2020-10-31")
+                    }
+                    });
+
+   Output   : // Output for Topics:
+              {
+              _id: ObjectId('684eb0e4abc0d2a269f4a818'),
+              topic_name: 'Javascript',
+              date: 2020-10-16T00:00:00.000Z
+              }
+              
+              {
+              _id: ObjectId('684eb0e4abc0d2a269f4a819'),
+              topic_name: 'MySQL',
+              date: 2020-10-26T00:00:00.000Z
+              }
+              
+              {
+              _id: ObjectId('684eb0e4abc0d2a269f4a81a'),
+              topic_name: 'MongoDB',
+              date: 2020-10-28T00:00:00.000Z
+              }
+              
+              
+              //Output for Tasks:
+              {
+              _id: ObjectId('684ed1c0abc0d2a269f4a824'),
+              topic_id: ObjectId('684eb0e4abc0d2a269f4a818'),
+              task_name: 'Todo App',
+              date: 2020-10-25T00:00:00.000Z,
+              submitted_by: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820')
+                ]
+              }
+              
+              {
+              _id: ObjectId('684ed1c0abc0d2a269f4a825'),
+              topic_id: ObjectId('684eb0e4abc0d2a269f4a819'),
+              task_name: 'E-commerce Database',
+              date: 2020-10-27T00:00:00.000Z,
+              submitted_by: [
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+              
+              {
+              _id: ObjectId('684ed1c0abc0d2a269f4a826'),
+              topic_id: ObjectId('684eb0e4abc0d2a269f4a81a'),
+              task_name: 'Zen Class Programme',
+              date: 2020-10-29T00:00:00.000Z,
+              submitted_by: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+
+2. Question : Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020
+   
+   Query    : db.company_drives.find({
+                    date:{
+                    $gte:new Date("2020-10-15"),
+                    $lte:new Date("2020-10-31")
+                    }
+                    });
+
+   Output   : {
+              _id: ObjectId('684ed53fabc0d2a269f4a828'),
+              company_name: 'Microsoft',
+              date: 2020-10-25T00:00:00.000Z,
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820')
+                ]
+              }
+              
+              {
+              _id: ObjectId('684ed53fabc0d2a269f4a829'),
+              company_name: 'Zoho',
+              date: 2020-10-27T00:00:00.000Z,
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+              
+              {
+              _id: ObjectId('684ed53fabc0d2a269f4a82a'),
+              company_name: 'Amazon',
+              date: 2020-10-29T00:00:00.000Z,
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+
+3. Question : Find all the company drives and students who are appeared for the placement.
+   
+   Query    : db.company_drives.find({}, { company_name: 1, attended_students: 1 , _id:0 });
+
+   Output   : {
+              company_name: 'Google',
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f')
+                ]
+              }
+
+              {
+              company_name: 'Microsoft',
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820')
+                ]
+              }
+
+              {
+              company_name: 'Zoho',
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+
+              {
+              company_name: 'Amazon',
+              attended_students: [
+                  ObjectId('684ecc13abc0d2a269f4a81e'),
+                  ObjectId('684ecc13abc0d2a269f4a81f'),
+                  ObjectId('684ecc13abc0d2a269f4a820'),
+                  ObjectId('684ecc13abc0d2a269f4a821')
+                ]
+              }
+
+4. Question : Find the number of problems solved by the user in codekata
+   
+   Query    : db.codekata.find({}, {_id: 0, user_id: 1, problems_solved: 1});
+
+   Output   : {
+              user_id: ObjectId('684ecc13abc0d2a269f4a81e'),
+              problems_solved: 25
+              }
+              
+              {
+              user_id: ObjectId('684ecc13abc0d2a269f4a81f'),
+              problems_solved: 15
+              }
+
+              {
+              user_id: ObjectId('684ecc13abc0d2a269f4a820'),
+              problems_solved: 10
+              }
+
+              {
+              user_id: ObjectId('684ecc13abc0d2a269f4a821'),
+              problems_solved: 20
+              }
+
+5. Question : Find all the mentors with who has the mentee's count more than 15
+   
+   Query    : db.mentors.find({mentee_count:{$gt:15}});
+
+   Output   : {
+              _id: ObjectId('684ed768abc0d2a269f4a82b'),
+              mentor_name: 'Rupan',
+              mentee_count: 30
+              }
+
+              {
+              _id: ObjectId('684f43feabc0d2a269f4a82d'),
+              mentor_name: 'Vasantharajan',
+              mentee_count: 18
+              }
+
+              {
+              _id: ObjectId('684f43feabc0d2a269f4a82e'),
+              mentor_name: 'Pugazharasan',
+              mentee_count: 25
+              }
+
+6. Question : Find the number of users who are absent and task is not submitted between 15 oct-2020 and 31-oct-2020
+
+   Query    : // Using Aggregation:
+              
+              db.attendance.aggregate([
+                {
+                    $match: {
+                    attendance_status: "absent",
+                    date: {
+                        $gte: new Date("2020-10-15"),
+                        $lte: new Date("2020-10-31")
+                    }
+                    }
+                },
+                {
+                    $lookup: {
+                    from: "tasks",
+                    let: { userId: "$user_id" },
+                    pipeline: [
+                        {
+                        $match: {
+                            date: {
+                            $gte: new Date("2020-10-15"),
+                            $lte: new Date("2020-10-31")
+                            }
+                        }
+                        },
+                        {
+                        $match: {
+                            $expr: {
+                            $in: ["$$userId", "$submitted_by"]
+                            }
+                        }
+                        }
+                    ],
+                    as: "submitted_tasks"
+                    }
+                },
+                {
+                    $match: {
+                    submitted_tasks: { $size: 0 }
+                    }
+                },
+                {
+                    $group: {
+                    _id: "$user_id"
+                    }
+                },
+                {
+                    $count: "absent_and_task_not_submitted"
+                }
+                ]);
+
+             
+             
+             // Without using Aggregation:
+                
+              let absentees = db.attendance.find({
+                attendance_status: "absent",
+                date: {
+                    $gte: new Date("2020-10-15"),
+                    $lte: new Date("2020-10-31")
+                }
+                }).toArray();
+
+                const tasks = db.tasks.find({
+                date: {
+                    $gte: new Date("2020-10-15"),
+                    $lte: new Date("2020-10-31")
+                }
+                }).toArray();
+                let absentUserIds = [...new Set(absentees.map(a => a.user_id.toString()))];
+                let submittedUserIds = new Set();
+                tasks.forEach(task => {
+                task.submitted_by.forEach(uid => {
+                    submittedUserIds.add(uid.toString());
+                });
+                });
+                let finalList = absentUserIds.filter(uid => !submittedUserIds.has(uid));
+                console.log("Absent and did not submit task:", finalList.length);
+
+   Output   : // Output using Aggregation:
+                
+                {
+                absent_and_task_not_submitted: 1
+                }
+
+              
+              // Output without using Aggregation:
+                 
+                 Absent and did not submit task:
+                 1
+
+<------------------------------ Queries part completed ------------------------------>
+  
